@@ -1,0 +1,12 @@
+C:\Users\vadik\source\repos\Chess\Chess.Domain\bin\Debug\net6.0\Chess.Domain.deps.json
+C:\Users\vadik\source\repos\Chess\Chess.Domain\bin\Debug\net6.0\Chess.Domain.dll
+C:\Users\vadik\source\repos\Chess\Chess.Domain\bin\Debug\net6.0\Chess.Domain.pdb
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\Chess.Domain.csproj.AssemblyReference.cache
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\Chess.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\Chess.Domain.AssemblyInfoInputs.cache
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\Chess.Domain.AssemblyInfo.cs
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\Chess.Domain.csproj.CoreCompileInputs.cache
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\Chess.Domain.dll
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\refint\Chess.Domain.dll
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\Chess.Domain.pdb
+C:\Users\vadik\source\repos\Chess\Chess.Domain\obj\Debug\net6.0\ref\Chess.Domain.dll
