@@ -1,37 +1,35 @@
-﻿namespace Chess.Domain.Models
+﻿using Chess.Domain.Intarfaces;
+using Chess.Domain.Models.Pieces;
+
+namespace Chess.Domain.Models
 {
     public class Game
     {
         private  Board _board = null!;
         private bool isWhiteStep = true;
-        public event Action<Board>? RenderBoard;
-        public event Action<Board,bool>? MakeMove;
+        private IRenderBoard _renderBoard;
+        private IMove _movePiece;
 
-        public Game()
+        public Game(IRenderBoard renderBoard, IMove movePiece)
         {
             _board = new Board();
+            _renderBoard = renderBoard;
+            _movePiece = movePiece;
         }
 
         public void GameLoop()
         {
-            while (isWhiteStep)
+            while (true)
             {
-                //render - отображаем доску
-                RenderBoard?.Invoke(_board);
-
-                //make move - делаем ход
-                MakeMove?.Invoke(_board, isWhiteStep);
-
-                //pass move - передаем ход 
-                isWhiteStep = !isWhiteStep;
-
+                _renderBoard.Render(_board);
+                _movePiece.Step()
 
             }
         }
 
-        private bool IsGameContinue()
-        {
-            return true;
-        }
+        public void RenderBoard() => _renderBoard.Render(_board);
+        public void MovePiece(Piece piece) => _movePiece.Step(piece,_board);
+        public void SwitchPlayer() => isWhiteStep = !isWhiteStep;
+
     }
 }

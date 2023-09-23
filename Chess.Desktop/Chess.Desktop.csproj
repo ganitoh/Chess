@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Sprite\blackBishop.png" />
+    <None Remove="Sprite\blackKing.png" />
+    <None Remove="Sprite\blackKnight.png" />
+    <None Remove="Sprite\blackPawn.png" />
+    <None Remove="Sprite\blackQueen.png" />
+    <None Remove="Sprite\blackRook.png" />
+    <None Remove="Sprite\whiteBishop.png" />
+    <None Remove="Sprite\whiteKing.png" />
+    <None Remove="Sprite\whiteKnight.png" />
+    <None Remove="Sprite\whitePawn.png" />
+    <None Remove="Sprite\whiteQueen.png" />
+    <None Remove="Sprite\whiteRook.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Chess.Domain\Chess.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Sprite\blackBishop.png" />
+    <Resource Include="Sprite\blackKing.png" />
+    <Resource Include="Sprite\blackKnight.png" />
+    <Resource Include="Sprite\blackPawn.png" />
+    <Resource Include="Sprite\blackQueen.png" />
+    <Resource Include="Sprite\blackRook.png" />
+    <Resource Include="Sprite\whiteBishop.png" />
+    <Resource Include="Sprite\whiteKing.png" />
+    <Resource Include="Sprite\whiteKnight.png" />
+    <Resource Include="Sprite\whitePawn.png" />
+    <Resource Include="Sprite\whiteQueen.png" />
+    <Resource Include="Sprite\whiteRook.png" />
+  </ItemGroup>
+
+</Project>
