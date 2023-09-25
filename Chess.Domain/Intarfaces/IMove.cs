@@ -5,6 +5,6 @@ namespace Chess.Domain.Intarfaces
 {
     public interface IMove
     {
-        void Step(Piece piece,Board board);
+        void Step();
     }
 }

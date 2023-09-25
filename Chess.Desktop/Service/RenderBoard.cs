@@ -3,8 +3,10 @@ using Chess.Domain.Models;
 using Chess.Domain.Models.Pieces;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Chess.Desktop.Service
@@ -14,6 +16,7 @@ namespace Chess.Desktop.Service
         private Grid boardGrid = null!;
         readonly Board _board = null!;
         private bool _isWhiteStep;
+        private TaskCompletionSource<Coordinates> buttonClickedTask = null!;
 
         public RenderBoard(Grid boardGrid, Board board, bool isWhiteStep)
         {
@@ -22,9 +25,9 @@ namespace Chess.Desktop.Service
             _isWhiteStep = isWhiteStep;
         }
 
-        public void Render(Board board)
+        public void Render()
         {
-            foreach (var item in board.pieces.Values)
+            foreach (var item in _board.pieces.Values)
             {
                 if (item.GetType() == typeof(Pawn))
                     RenderPieceSprite("/Sprite/whitePawn.png", "/Sprite/blackPawn.png", item);
@@ -65,9 +68,34 @@ namespace Chess.Desktop.Service
                 Piece? piece;
                 if (_isWhiteStep)
                 {
-                    piece = _board.pieces.Values.FirstOrDefault(p => (int)p.Coordinates.File == Grid.GetColumn(pieceBtn) && (int)p.Coordinates.Rank == Grid.GetRow(pieceBtn) && p.Color == Domain.Models.Color.white);
+                    int file = Grid.GetColumn(pieceBtn) + 1;
+                    int rank =  7 - Grid.GetRow(pieceBtn)  + 1 ;
+
+                    piece = _board.pieces.Values.FirstOrDefault(p => (int)p.Coordinates.File == file && (int)p.Coordinates.Rank == rank && p.Color == Domain.Models.Color.white);
+
+                    var listShiftPiece = piece?.GetAvailableMoveSquare(_board);
+
+                    if (listShiftPiece is not null)
+                    {
+                        foreach (Coordinates coordinates in listShiftPiece)
+                        {
+                            var element = boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == (int)coordinates.File - 1 && Grid.GetRow(e) == 7 - (coordinates.Rank - 1));
+
+                            if (element is not null)
+                            {
+                                element.Background = Brushes.White;
+                            }
+                        }
+
+                    }
                 }
             }
+        }
+
+        public async Task WaitClickButton()
+        {
+            buttonClickedTask = new TaskCompletionSource<Coordinates>();
+            await buttonClickedTask.Task;
         }
     }
 }

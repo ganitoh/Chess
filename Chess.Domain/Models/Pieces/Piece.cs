@@ -34,7 +34,6 @@
             => board.IsSquareEmpty(newCoordinates) || board.GetPiece(newCoordinates).Color != this.Color;
 
         protected abstract List<CoordinatesShift> GetPieceMoves();
-
         protected  List<CoordinatesShift> DiagonalShift()
         {
             var result = new List<CoordinatesShift>();
@@ -62,11 +61,13 @@
                     continue;
 
                 result.Add(new CoordinatesShift(fileShift, rankShift));
+
+                fileShift++;
+                rankShift--;
             }
 
             return result;
         }
-
         protected List<CoordinatesShift> HorizontalAndVerticalShift()
         {
             var result = new List<CoordinatesShift>();

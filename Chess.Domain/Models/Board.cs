@@ -19,7 +19,6 @@ namespace Chess.Domain.Models
 
         public Piece GetPiece(Coordinates coordinates)=> pieces[coordinates];
         public bool IsSquareEmpty(Coordinates coordinates) => !pieces.ContainsKey(coordinates);
-
         
     }
 }

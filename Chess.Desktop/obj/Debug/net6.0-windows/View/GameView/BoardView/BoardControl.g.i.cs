@@ -61,7 +61,7 @@ namespace Chess.Desktop.View.BoardView {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Chess.Desktop;V1.0.0.0;component/view/gameview/boardview/boardcontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Chess.Desktop;component/view/gameview/boardview/boardcontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\View\GameView\BoardView\BoardControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

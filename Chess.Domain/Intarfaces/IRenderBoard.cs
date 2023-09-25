@@ -4,6 +4,6 @@ namespace Chess.Domain.Intarfaces
 {
     public interface IRenderBoard
     {
-        void Render(Board board);
+        void Render();
     }
 }
