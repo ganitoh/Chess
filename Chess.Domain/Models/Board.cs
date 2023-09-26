@@ -17,6 +17,13 @@ namespace Chess.Domain.Models
             pieces.Add(coordinates, piece);
         }
 
+        public void StepPiece(Coordinates coordinates,Piece piece)
+        {
+            pieces.Remove(piece.Coordinates);
+            pieces.Add(coordinates, piece);
+            piece.Coordinates = coordinates;
+        }
+
         public Piece GetPiece(Coordinates coordinates)=> pieces[coordinates];
         public bool IsSquareEmpty(Coordinates coordinates) => !pieces.ContainsKey(coordinates);
         

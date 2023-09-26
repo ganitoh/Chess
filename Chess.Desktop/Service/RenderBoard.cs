@@ -3,26 +3,23 @@ using Chess.Domain.Models;
 using Chess.Domain.Models.Pieces;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Chess.Desktop.Service
 {
     internal class RenderBoard : IRenderBoard
     {
-        private Grid boardGrid = null!;
-        readonly Board _board = null!;
-        private bool _isWhiteStep;
-        private TaskCompletionSource<Coordinates> buttonClickedTask = null!;
+        #region Private Field
+        private Grid _boardGrid = null!;
+        private readonly Board _board = null!;
+       //private TaskCompletionSource<Coordinates> buttonClickedTask = null!;
+        #endregion
 
-        public RenderBoard(Grid boardGrid, Board board, bool isWhiteStep)
+        public RenderBoard(Grid boardGrid, Board board)
         {
-            this.boardGrid = boardGrid;
+            this._boardGrid = boardGrid;
             _board = board;
-            _isWhiteStep = isWhiteStep;
         }
 
         public void Render()
@@ -46,7 +43,7 @@ namespace Chess.Desktop.Service
 
         private void RenderPieceSprite(string whiteSpritePath, string blackSpritePath, Piece piece)
         {
-            var element = boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == (int)piece.Coordinates.File - 1 && Grid.GetRow(e) == 7 - (piece.Coordinates.Rank - 1));
+            var element = _boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == (int)piece.Coordinates.File - 1 && Grid.GetRow(e) == 7 - (piece.Coordinates.Rank - 1));
 
             Image img = new Image();
 
@@ -56,46 +53,14 @@ namespace Chess.Desktop.Service
                 img.Source = new BitmapImage(new Uri(whiteSpritePath, UriKind.Relative));
 
             element!.Content = img;
-            element.Click += ActivePiece;
         }
 
-        private void ActivePiece(object sender, RoutedEventArgs e)
-        {
-            var pieceBtn = sender as Button;
 
-            if (pieceBtn is not null)
-            {
-                Piece? piece;
-                if (_isWhiteStep)
-                {
-                    int file = Grid.GetColumn(pieceBtn) + 1;
-                    int rank =  7 - Grid.GetRow(pieceBtn)  + 1 ;
 
-                    piece = _board.pieces.Values.FirstOrDefault(p => (int)p.Coordinates.File == file && (int)p.Coordinates.Rank == rank && p.Color == Domain.Models.Color.white);
-
-                    var listShiftPiece = piece?.GetAvailableMoveSquare(_board);
-
-                    if (listShiftPiece is not null)
-                    {
-                        foreach (Coordinates coordinates in listShiftPiece)
-                        {
-                            var element = boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == (int)coordinates.File - 1 && Grid.GetRow(e) == 7 - (coordinates.Rank - 1));
-
-                            if (element is not null)
-                            {
-                                element.Background = Brushes.White;
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
-
-        public async Task WaitClickButton()
-        {
-            buttonClickedTask = new TaskCompletionSource<Coordinates>();
-            await buttonClickedTask.Task;
-        }
+        //public async Task WaitClickButton()
+        //{
+        //    buttonClickedTask = new TaskCompletionSource<Coordinates>();
+        //    await buttonClickedTask.Task;
+        //}
     }
 }

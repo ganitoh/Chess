@@ -20,6 +20,7 @@
             {
                 if (Coordinates.IsCorrectShift(shift))
                 {
+
                     Coordinates newCoordinates = this.Coordinates.Shift(shift);
 
                     if (IsSquareAvailableForMove(newCoordinates,board))
@@ -30,40 +31,65 @@
             return result;
         }
 
-        protected virtual bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board) 
+        protected virtual bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
             => board.IsSquareEmpty(newCoordinates) || board.GetPiece(newCoordinates).Color != this.Color;
-
         protected abstract List<CoordinatesShift> GetPieceMoves();
         protected  List<CoordinatesShift> DiagonalShift()
         {
             var result = new List<CoordinatesShift>();
 
             int fileShift = -7;
-            int rankShift = 7;
+            int rankShift = -7;
 
-            while (fileShift < 7 && rankShift < 7)
+            while (fileShift <= 7 && rankShift <= 7)
             {
-                if (fileShift == 0)
+                if (fileShift == 0 && rankShift == 0)
+                {
+                    fileShift++;
+                    rankShift++;
                     continue;
+                }
 
                 result.Add(new CoordinatesShift(fileShift, rankShift));
 
                 fileShift++;
-                rankShift++;
+                rankShift++;    
             }
 
-            fileShift = 0;
-            rankShift = 7;
+            fileShift = 1;
+            rankShift = -1;
 
-            while (fileShift < 7 && rankShift > 0)
+            while (fileShift <= 7 && rankShift >= -7)
             {
                 if (fileShift == 0 && rankShift == 0)
+                {
+                    fileShift++;
+                    rankShift--;
                     continue;
+                }
 
                 result.Add(new CoordinatesShift(fileShift, rankShift));
 
                 fileShift++;
                 rankShift--;
+            }
+
+            fileShift = -1;
+            rankShift = 1;
+
+            while (fileShift >= -7 && rankShift <= 7)
+            {
+                if (fileShift == 0 && rankShift == 0)
+                {
+                    fileShift--;
+                    rankShift++;
+                    continue;
+                }
+
+                result.Add(new CoordinatesShift(fileShift, rankShift));
+
+                fileShift--;
+                rankShift++;
             }
 
             return result;
@@ -72,7 +98,7 @@
         {
             var result = new List<CoordinatesShift>();
 
-            for (int i = -7; i < 7; i++)
+            for (int i = -7; i <= 7; i++)
             {
                 if (i == 0)
                     continue;
@@ -80,7 +106,7 @@
                 result.Add(new CoordinatesShift(i, 0));
             }
 
-            for (int i = -7; i < 7; i++)
+            for (int i = -7; i <= 7; i++)
             {
                 if (i == 0)
                     continue;
@@ -90,5 +116,6 @@
 
             return result;
         }
+
     }
 }

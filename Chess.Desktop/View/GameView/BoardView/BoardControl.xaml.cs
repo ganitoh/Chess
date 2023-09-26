@@ -10,17 +10,18 @@ namespace Chess.Desktop.View.BoardView
     public partial class BoardControl : UserControl
     {
         private Board _board = null!;
-        private bool _isWhiteStep = true;
+        private bool isGameСontinue = true;
 
         public BoardControl()
         {
             InitializeComponent();
 
             _board = new Board();
-            RenderBoard render = new RenderBoard(boardGrid, _board, _isWhiteStep);
+            RenderBoard render = new RenderBoard(boardGrid, _board);
+            MovePiece movePiece = new MovePiece(boardGrid,_board);
+
             render.Render();
-
-
+            movePiece.Step();
             
 
         }        
