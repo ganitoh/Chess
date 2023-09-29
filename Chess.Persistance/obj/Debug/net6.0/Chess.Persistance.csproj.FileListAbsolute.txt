@@ -1,0 +1,15 @@
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\bin\Debug\net6.0\Chess.Persistance.deps.json
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\bin\Debug\net6.0\Chess.Persistance.dll
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\bin\Debug\net6.0\Chess.Persistance.pdb
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.csproj.AssemblyReference.cache
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.AssemblyInfoInputs.cache
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.AssemblyInfo.cs
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.csproj.CoreCompileInputs.cache
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.dll
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\refint\Chess.Persistance.dll
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.pdb
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\ref\Chess.Persistance.dll
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\bin\Debug\net6.0\Chess.Domain.dll
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\bin\Debug\net6.0\Chess.Domain.pdb
+C:\Users\vadik\source\repos\Chess\Chess.Persistance\obj\Debug\net6.0\Chess.Persistance.csproj.CopyComplete

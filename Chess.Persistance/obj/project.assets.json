@@ -516,6 +516,16 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "Chess.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Chess.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Chess.Domain.dll": {}
+        }
       }
     }
   },
@@ -1179,10 +1189,16 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Chess.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Chess.Domain/Chess.Domain.csproj",
+      "msbuildProject": "../Chess.Domain/Chess.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Chess.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.11"
     ]
   },
@@ -1212,7 +1228,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\vadik\\source\\repos\\Chess\\Chess.Domain\\Chess.Domain.csproj": {
+              "projectPath": "C:\\Users\\vadik\\source\\repos\\Chess\\Chess.Domain\\Chess.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

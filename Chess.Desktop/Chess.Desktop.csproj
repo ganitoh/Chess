@@ -14,12 +14,17 @@
     <None Remove="Sprite\blackPawn.png" />
     <None Remove="Sprite\blackQueen.png" />
     <None Remove="Sprite\blackRook.png" />
+    <None Remove="Sprite\stepPoint.png" />
     <None Remove="Sprite\whiteBishop.png" />
     <None Remove="Sprite\whiteKing.png" />
     <None Remove="Sprite\whiteKnight.png" />
     <None Remove="Sprite\whitePawn.png" />
     <None Remove="Sprite\whiteQueen.png" />
     <None Remove="Sprite\whiteRook.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Sprite\stepPoint.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -24,6 +24,16 @@ namespace Chess.Domain.Models
             piece.Coordinates = coordinates;
         }
 
+        public void BeatPiece(Coordinates coordinates, Piece piece)
+        {
+            pieces.Remove(coordinates);
+            pieces.Remove(piece.Coordinates);
+            pieces.Add(coordinates, piece);
+            piece.Coordinates = coordinates;
+        }
+
+
+
         public Piece GetPiece(Coordinates coordinates)=> pieces[coordinates];
         public bool IsSquareEmpty(Coordinates coordinates) => !pieces.ContainsKey(coordinates);
         

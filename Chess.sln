@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Desktop", "Chess.Desk
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4D469339-1246-416A-A9EC-5561D846AFF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.Persistance", "Chess.Persistance\Chess.Persistance.csproj", "{FAB06528-B754-496B-863C-DCCFC8A80EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Persistance", "Chess.Persistance\Chess.Persistance.csproj", "{FAB06528-B754-496B-863C-DCCFC8A80EB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.WebUI", "Chess.WebUI\Chess.WebUI.csproj", "{E4D6A3FE-2BD8-4661-A618-D0E18FF07699}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FAB06528-B754-496B-863C-DCCFC8A80EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB06528-B754-496B-863C-DCCFC8A80EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB06528-B754-496B-863C-DCCFC8A80EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4D6A3FE-2BD8-4661-A618-D0E18FF07699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4D6A3FE-2BD8-4661-A618-D0E18FF07699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4D6A3FE-2BD8-4661-A618-D0E18FF07699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4D6A3FE-2BD8-4661-A618-D0E18FF07699}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{A80024CE-E9B5-4E9F-9AEA-6C50CF65867C} = {88139459-A80D-41F6-BD2C-1B1B47957D29}
 		{7BA85488-CEBA-4055-AEA6-877FB34A8F31} = {C004D8AC-394E-4D50-AC40-9B274E85A267}
 		{FAB06528-B754-496B-863C-DCCFC8A80EB6} = {4D469339-1246-416A-A9EC-5561D846AFF8}
+		{E4D6A3FE-2BD8-4661-A618-D0E18FF07699} = {C004D8AC-394E-4D50-AC40-9B274E85A267}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AE747A2-3E13-4FDF-BA8F-F8E316205A22}

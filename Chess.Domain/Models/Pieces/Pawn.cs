@@ -2,7 +2,7 @@
 {
     public class Pawn : Piece
     {
-        private bool isFirstStep = false;
+        private bool isFirstStepTaken = false;
 
         public Pawn(Color color, Coordinates coordinates) : base(color, coordinates) { }
 
@@ -13,13 +13,13 @@
             if (this.Color == Color.black)
             {
                 resultShift.Add(new CoordinatesShift(0, -1));
-                if (!isFirstStep)
+                if (!isFirstStepTaken)
                     resultShift.Add(new CoordinatesShift(0, -2));
             }
             else if (this.Color == Color.white)
             {
                 resultShift.Add(new CoordinatesShift(0, 1));
-                if (!isFirstStep)
+                if (!isFirstStepTaken)
                     resultShift.Add(new CoordinatesShift(0, 2));
             }
 

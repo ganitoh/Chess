@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Chess.WebUI/1.0.0": {
+        "runtime": {
+          "Chess.WebUI.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Chess.WebUI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

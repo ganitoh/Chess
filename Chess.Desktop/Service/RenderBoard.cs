@@ -10,11 +10,9 @@ namespace Chess.Desktop.Service
 {
     internal class RenderBoard : IRenderBoard
     {
-        #region Private Field
         private Grid _boardGrid = null!;
         private readonly Board _board = null!;
-       //private TaskCompletionSource<Coordinates> buttonClickedTask = null!;
-        #endregion
+        
 
         public RenderBoard(Grid boardGrid, Board board)
         {
@@ -54,13 +52,5 @@ namespace Chess.Desktop.Service
 
             element!.Content = img;
         }
-
-
-
-        //public async Task WaitClickButton()
-        //{
-        //    buttonClickedTask = new TaskCompletionSource<Coordinates>();
-        //    await buttonClickedTask.Task;
-        //}
     }
 }
