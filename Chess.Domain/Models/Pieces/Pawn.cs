@@ -15,6 +15,7 @@
                 resultShift.Add(new CoordinatesShift(0, -1));
                 if (!isFirstStepTaken)
                     resultShift.Add(new CoordinatesShift(0, -2));
+
             }
             else if (this.Color == Color.white)
             {

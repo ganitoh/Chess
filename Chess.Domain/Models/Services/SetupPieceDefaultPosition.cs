@@ -101,8 +101,6 @@ namespace Chess.Domain.Models.Services
                 SetPiece(new Coordinates((FileCoordinates)item, 2), new Pawn(Color.white, new Coordinates((FileCoordinates)item, 2)));
                 SetPiece(new Coordinates((FileCoordinates)item, 7), new Pawn(Color.black, new Coordinates((FileCoordinates)item, 7)));
             }
-
         }
-
     }
 }

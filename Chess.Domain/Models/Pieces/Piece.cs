@@ -1,8 +1,8 @@
-﻿namespace Chess.Domain.Models.Pieces
+﻿
+namespace Chess.Domain.Models.Pieces
 {
     public abstract class Piece
     {
-
         public Color Color { get; }
         public Coordinates Coordinates { get; set; } = null!;
 
@@ -20,7 +20,6 @@
             {
                 if (Coordinates.IsCorrectShift(shift))
                 {
-
                     Coordinates newCoordinates = this.Coordinates.Shift(shift);
 
                     if (IsSquareAvailableForMove(newCoordinates,board))
@@ -33,7 +32,39 @@
 
         protected virtual bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
             => board.IsSquareEmpty(newCoordinates) || board.GetPiece(newCoordinates).Color != this.Color;
+
         protected abstract List<CoordinatesShift> GetPieceMoves();
+        private List<Coordinates> GetBlockSquareHorizontalAndVertical(Board board)
+        {
+            var shifts = HorizontalAndVerticalShift();
+            var result = new List<Coordinates>();
+
+            foreach (var shift in shifts)
+            {
+                Coordinates blockCoordinates = this.Coordinates.Shift(shift);
+
+                if (!board.IsSquareEmpty(blockCoordinates))
+                {
+                    if (shift.RankShift == 0)
+                    {
+                        for (int i = 1; i < 8; i++)
+                        {
+                            result.Add(blockCoordinates.Shift(new CoordinatesShift(i,0)));
+                        }
+                    }
+                    else if (shift.FileShift == 0)
+                    {
+                        for (int i = 1; i < 8; i++)
+                        {
+                            result.Add(blockCoordinates.Shift(new CoordinatesShift(0, i)));
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
         protected  List<CoordinatesShift> DiagonalShift()
         {
             var result = new List<CoordinatesShift>();
