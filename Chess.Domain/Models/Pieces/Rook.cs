@@ -1,5 +1,7 @@
 ﻿
 
+using Chess.Domain.Models.GameTools;
+
 namespace Chess.Domain.Models.Pieces
 {
     //ладья

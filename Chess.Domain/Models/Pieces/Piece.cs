@@ -1,4 +1,6 @@
-﻿
+﻿using Chess.Domain.Models.GameTools;
+
+
 namespace Chess.Domain.Models.Pieces
 {
     public abstract class Piece
@@ -32,40 +34,15 @@ namespace Chess.Domain.Models.Pieces
 
         protected virtual bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
             => board.IsSquareEmpty(newCoordinates) || board.GetPiece(newCoordinates).Color != this.Color;
-
         protected abstract List<CoordinatesShift> GetPieceMoves();
-        private List<Coordinates> GetBlockSquareHorizontalAndVertical(Board board)
+        public virtual void BeatePiece(Board board,Coordinates coordinates)
         {
-            var shifts = HorizontalAndVerticalShift();
-            var result = new List<Coordinates>();
-
-            foreach (var shift in shifts)
-            {
-                Coordinates blockCoordinates = this.Coordinates.Shift(shift);
-
-                if (!board.IsSquareEmpty(blockCoordinates))
-                {
-                    if (shift.RankShift == 0)
-                    {
-                        for (int i = 1; i < 8; i++)
-                        {
-                            result.Add(blockCoordinates.Shift(new CoordinatesShift(i,0)));
-                        }
-                    }
-                    else if (shift.FileShift == 0)
-                    {
-                        for (int i = 1; i < 8; i++)
-                        {
-                            result.Add(blockCoordinates.Shift(new CoordinatesShift(0, i)));
-                        }
-                    }
-                }
-            }
-
-            return result;
+            board.pieces.Remove(coordinates);
+            board.pieces.Remove(this.Coordinates);
+            board.pieces.Add(coordinates, this);
+            this.Coordinates = coordinates;
         }
-
-        protected  List<CoordinatesShift> DiagonalShift()
+        protected List<CoordinatesShift> DiagonalShift()
         {
             var result = new List<CoordinatesShift>();
 
@@ -129,7 +106,7 @@ namespace Chess.Domain.Models.Pieces
         {
             var result = new List<CoordinatesShift>();
 
-            for (int i = -7; i <= 7; i++)
+            for (int i = - 7; i <= 7; i++)
             {
                 if (i == 0)
                     continue;
@@ -137,7 +114,7 @@ namespace Chess.Domain.Models.Pieces
                 result.Add(new CoordinatesShift(i, 0));
             }
 
-            for (int i = -7; i <= 7; i++)
+            for (int i = - 7; i <= 7; i++)
             {
                 if (i == 0)
                     continue;

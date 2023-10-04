@@ -1,4 +1,6 @@
-﻿namespace Chess.Domain.Models.Pieces
+﻿using Chess.Domain.Models.GameTools;
+
+namespace Chess.Domain.Models.Pieces
 {
     public class Bishop : Piece
     {

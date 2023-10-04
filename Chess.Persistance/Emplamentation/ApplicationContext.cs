@@ -1,4 +1,4 @@
-﻿using Chess.Domain.Models.People;
+﻿using Chess.Domain.Models.User;
 using Microsoft.EntityFrameworkCore;
 
 

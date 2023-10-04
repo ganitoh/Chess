@@ -1,5 +1,5 @@
 ﻿using Chess.Domain.Intarfaces;
-using Chess.Domain.Models;
+using Chess.Domain.Models.GameTools;
 using Chess.Domain.Models.Pieces;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +14,13 @@ namespace Chess.Desktop.Service
         private List<Coordinates> _activeSquareForMove = new List<Coordinates>();
         private Board _board = null!;
         private Grid _boardGrid = null!;
-        private bool _isWhiteStep = true;
         private Button? _activeButton;
         private Piece? _activePiece;
         #endregion
 
         public bool ButtonClicked { get; set; }
 
-        public MovePiece( Grid boardGrid,Board board)
+        public MovePiece(Grid boardGrid,Board board)
         {
             _boardGrid = boardGrid;
             _board = board;
@@ -29,15 +28,20 @@ namespace Chess.Desktop.Service
 
         public void Step(bool isWhiteStep)
         {
-            _isWhiteStep = isWhiteStep;
+            if (isWhiteStep)
+                BindingActionForActivePieces(Color.white);
+            else
+                BindingActionForActivePieces(Color.black);
+        }
 
-            foreach (var piece in _board.pieces.Values)
+        private void BindingActionForActivePieces(Color colorPiece)
+        {
+            foreach (var piece in _board.pieces.Values.ToList().FindAll(p => p.Color == colorPiece))
             {
                 var btt = _boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == (int)piece.Coordinates.File - 1 && Grid.GetRow(e) == 7 - (piece.Coordinates.Rank - 1));
                 btt!.Click += ActivePiece;
             }
         }
-
         private void ActivePiece(object sender, System.Windows.RoutedEventArgs e)
         {
             CleareShiftAtSwithActivePiece();
@@ -46,12 +50,8 @@ namespace Chess.Desktop.Service
 
             if (_activeButton is not null)
             {
-                if (_isWhiteStep)
-                    ShowStepForActivePiece(Color.white);
-                else
-                    ShowStepForActivePiece(Color.black);
+                ShowStepForActivePiece();
             }
-
 
             foreach (var coordinates in _activeSquareForMove)
             {
@@ -60,13 +60,11 @@ namespace Chess.Desktop.Service
                 element!.Click += MoveActivePiece;
             }
         }
-
-        private void ShowStepForActivePiece(Color colorPiece)
+        private void ShowStepForActivePiece()
         {
-            int file = Grid.GetColumn(_activeButton) + 1;
-            int rank = 8 - Grid.GetRow(_activeButton);
+            Coordinates coordinatesActivePiece = GetCoordinatesPieceAtButton(_activeButton!);
 
-            _activePiece = _board.pieces.Values.FirstOrDefault(p => (int)p.Coordinates.File == file && (int)p.Coordinates.Rank == rank && p.Color == colorPiece);
+            _activePiece = _board.pieces[coordinatesActivePiece];
 
             var listShiftPiece = _activePiece?.GetAvailableMoveSquare(_board);
 
@@ -85,7 +83,6 @@ namespace Chess.Desktop.Service
                         _activeSquareForMove!.Add(coordinates);
                     }
                 }
-
             }
         }
         private void MoveActivePiece(object sender, System.Windows.RoutedEventArgs e)
@@ -94,10 +91,7 @@ namespace Chess.Desktop.Service
 
             Button? btt = sender as Button;
 
-            int file = Grid.GetColumn(btt) + 1;
-            int rank = 8 - Grid.GetRow(btt);
-
-            Coordinates coordinatesForStep = new Coordinates((FileCoordinates)file, rank);
+            Coordinates coordinatesForStep = GetCoordinatesPieceAtButton(btt!);
 
             if (_board.IsSquareEmpty(coordinatesForStep))
                 _board.StepPiece(coordinatesForStep, _activePiece!);
@@ -109,24 +103,44 @@ namespace Chess.Desktop.Service
             _activeButton!.Click -= ActivePiece;
 
             ButtonClicked = true;
+
+            UnbindingActivePieces();
         }
+
         private void CleareShiftAtSwithActivePiece()
         {
             if (_activeSquareForMove.Count != 0)
-            {
-                foreach (var coordinates in _activeSquareForMove)
-                {
-                    int column = (int)coordinates.File - 1;
-                    int row = 8 - coordinates.Rank;
-
-                    var element = _boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == column && Grid.GetRow(e) == row);
-
-                    element!.Content = null;
-                    element.Click -= MoveActivePiece;
-                }
-            }
-
+                CleareShift();
+            
             _activeSquareForMove = new List<Coordinates>();
+        }
+        private void CleareShift()
+        {
+            foreach (var coordinates in _activeSquareForMove)
+            {
+                int column = (int)coordinates.File - 1;
+                int row = 8 - coordinates.Rank;
+
+                var element = _boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == column && Grid.GetRow(e) == row);
+
+                element!.Content = null;
+                element.Click -= MoveActivePiece;
+            }
+        }
+        private Coordinates GetCoordinatesPieceAtButton(Button btt)
+        {
+            int file = Grid.GetColumn(btt) + 1;
+            int rank = 8 - Grid.GetRow(btt);
+
+            return new Coordinates((FileCoordinates)file, rank);
+        }
+        private void UnbindingActivePieces()
+        {
+            foreach (var piece in _board.pieces.Values)
+            {
+                var btt = _boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == (int)piece.Coordinates.File - 1 && Grid.GetRow(e) == 7 - (piece.Coordinates.Rank - 1));
+                btt!.Click -= ActivePiece;
+            }
         }
     }
 }

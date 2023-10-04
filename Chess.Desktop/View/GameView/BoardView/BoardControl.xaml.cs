@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using Chess.Desktop.Service;
-using Chess.Domain.Models;
+using Chess.Domain.Models.GameTools;
 
 namespace Chess.Desktop.View.BoardView
 {

@@ -1,5 +1,5 @@
 ﻿using Chess.Domain.Intarfaces;
-using Chess.Domain.Models;
+using Chess.Domain.Models.GameTools;
 using Chess.Domain.Models.Pieces;
 using System;
 using System.Linq;
@@ -45,7 +45,7 @@ namespace Chess.Desktop.Service
 
             Image img = new Image();
 
-            if (piece.Color == Chess.Domain.Models.Color.black)
+            if (piece.Color == Color.black)
                 img.Source = new BitmapImage(new Uri(blackSpritePath, UriKind.Relative));
             else
                 img.Source = new BitmapImage(new Uri(whiteSpritePath, UriKind.Relative));
