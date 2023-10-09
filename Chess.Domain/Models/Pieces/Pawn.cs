@@ -31,29 +31,24 @@ namespace Chess.Domain.Models.Pieces
 
         protected override bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
         {
-            bool result =  base.IsSquareAvailableForMove(newCoordinates, board);
+            bool result =  board.IsSquareEmpty(newCoordinates);
 
-            if (!isFirstStepTaken)
-            {
-                if (this.Color == Color.white && !board.IsSquareEmpty(newCoordinates.Shift(new CoordinatesShift(0, -1))) && this.Coordinates == newCoordinates.Shift(new CoordinatesShift(0, -1))) 
-                {
-                    result = false;
-                }
-                else if (this.Color == Color.black && !board.IsSquareEmpty(newCoordinates.Shift(new CoordinatesShift(0, 1))) && this.Coordinates == newCoordinates.Shift(new CoordinatesShift(0, 1)))
-                {
-                    result = false;
-                }
-                else if (this.Color == Color.white && !board.IsSquareEmpty(newCoordinates.Shift(new CoordinatesShift(0, 1))) && this.Coordinates != newCoordinates.Shift(new CoordinatesShift(0, -1)))
-                {
-                    result = true;
-                }
-                else if (this.Color == Color.black && !board.IsSquareEmpty(newCoordinates.Shift(new CoordinatesShift(0, 1))) && this.Coordinates != newCoordinates.Shift(new CoordinatesShift(0, 1)))
-                {
-                    result = true;
-                }
-            }
+            if (!result)
+                return result;
+            else if (Math.Abs(newCoordinates.Rank - this.Coordinates.Rank) == 2)
+                result = DoubleStepCheck(newCoordinates, board);
 
             return result;
+        }
+
+        private bool DoubleStepCheck(Coordinates newCoordinates,Board board)
+        {
+            if (this.Color == Color.white && !board.IsSquareEmpty(newCoordinates.Shift(new CoordinatesShift(0, -1))))
+                 return false;
+            else if (this.Color == Color.black && !board.IsSquareEmpty(newCoordinates.Shift(new CoordinatesShift(0, 1))))
+                 return false;
+            
+            return true;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Chess.Domain.Services
             return pieces;
         }
 
-        public static void SetPiece(Coordinates coordinates, Piece piece)
+        private static void SetPiece(Coordinates coordinates, Piece piece)
         {
             pieces.Add(coordinates, piece);
         }

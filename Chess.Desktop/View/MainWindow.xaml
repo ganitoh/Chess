@@ -11,9 +11,10 @@
             <Border HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="600" Background="Gray" Margin="20" CornerRadius="20">
                 <StackPanel>
                     <TextBlock Text="Меню" HorizontalAlignment="Center" Margin="0 20 0 40" FontSize="25" FontWeight="Bold"/>
-                    <Button Content="Начать игру" Margin="40 10 30 10" FontSize="25"  Click="Button_Click_1"/>
+                    <Button Content="играть" Margin="40 10 30 10" FontSize="25"  Click="Button_Click_1"/>
+                    <Button Content="рейтинговая игра" Margin="40 10 30 10" FontSize="25"  Click="Button_Click_1"/>
                     <Button Content="статистика" Margin="30 10 30 10" FontSize="25" />
-                    <Button Content="локальный аккаунт" Margin="30 10 30 10" FontSize="25" />
+                    <Button Content="локальный аккаунт" Margin="30 10 30 10" FontSize="25" Click="Button_Click"/>
                     <Button Content="настройки" Margin="30 10 30 10" FontSize="25" />
                 </StackPanel>
             </Border>

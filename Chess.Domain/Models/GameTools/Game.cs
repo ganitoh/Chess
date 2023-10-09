@@ -25,12 +25,12 @@ namespace Chess.Domain.Models.GameTools
                 {
                     while (true)
                     {
-                        if (_movePiece.ButtonClicked)
+                        if (_movePiece.StepTaken)
                             break;
                     }
                 });
 
-                _movePiece.ButtonClicked = false;
+                _movePiece.StepTaken = false;
 
                 _isWhiteStep = !_isWhiteStep;
             }

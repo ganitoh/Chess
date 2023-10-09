@@ -1,4 +1,5 @@
 ﻿using Chess.Domain.Models.User;
+using Chess.Persistance.EntityConfigurationType;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -20,7 +21,7 @@ namespace Chess.Persistance.Emplamentation
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration<Player>(new PlayerConfiguration());
         }
 
 

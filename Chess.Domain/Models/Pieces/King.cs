@@ -23,9 +23,9 @@ namespace Chess.Domain.Models.Pieces
             return resultShift;
         }
 
-        private bool IsAvailableForMoveTheKing(Board board)
+        protected override bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
         {
-            throw new Exception();
+            return base.IsSquareAvailableForMove(newCoordinates, board);
         }
     }
 }

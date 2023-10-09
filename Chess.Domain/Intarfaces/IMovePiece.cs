@@ -2,7 +2,7 @@
 {
     public interface IMovePiece
     {
-        public bool ButtonClicked { get; set; }
+        public bool StepTaken { get; set; }
         void Step(bool isWhiteStep);
     }
 }

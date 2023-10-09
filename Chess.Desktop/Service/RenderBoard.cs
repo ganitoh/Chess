@@ -12,7 +12,6 @@ namespace Chess.Desktop.Service
     {
         private Grid _boardGrid = null!;
         private readonly Board _board = null!;
-        
 
         public RenderBoard(Grid boardGrid, Board board)
         {
@@ -24,19 +23,32 @@ namespace Chess.Desktop.Service
         {
             foreach (var item in _board.pieces.Values)
             {
-                if (item.GetType() == typeof(Pawn))
-                    RenderPieceSprite("/Sprite/whitePawn.png", "/Sprite/blackPawn.png", item);
-                else if (item.GetType() == typeof(Knight))
-                    RenderPieceSprite("/Sprite/whiteKnight.png", "/Sprite/blackKnight.png", item);
-                else if (item.GetType() == typeof(Bishop))
-                    RenderPieceSprite("/Sprite/whiteBishop.png", "/Sprite/blackBishop.png", item);
-                else if (item.GetType() == typeof(Rook))
-                    RenderPieceSprite("/Sprite/whiteRook.png", "/Sprite/blackRook.png", item);
-                else if (item.GetType() == typeof(Queen))
-                    RenderPieceSprite("/Sprite/whiteQueen.png", "/Sprite/blackQueen.png", item);
-                else if (item.GetType() == typeof(King))
-                    RenderPieceSprite("/Sprite/whiteKing.png", "/Sprite/blackKing.png", item);
+                ChoiceSpriteForPiece(item);
             }
+        }
+        public void Render(Coordinates coordinates)
+        {
+            Piece piece = _board.GetPiece(coordinates);
+
+            if (piece != null)
+                ChoiceSpriteForPiece(piece);
+            
+        }
+
+        private void ChoiceSpriteForPiece(Piece piece)
+        {
+            if (piece.GetType() == typeof(Pawn))
+                RenderPieceSprite("/Sprite/whitePawn.png", "/Sprite/blackPawn.png", piece);
+            else if (piece.GetType() == typeof(Knight))
+                RenderPieceSprite("/Sprite/whiteKnight.png", "/Sprite/blackKnight.png", piece);
+            else if (piece.GetType() == typeof(Bishop))
+                RenderPieceSprite("/Sprite/whiteBishop.png", "/Sprite/blackBishop.png", piece);
+            else if (piece.GetType() == typeof(Rook))
+                RenderPieceSprite("/Sprite/whiteRook.png", "/Sprite/blackRook.png", piece);
+            else if (piece.GetType() == typeof(Queen))
+                RenderPieceSprite("/Sprite/whiteQueen.png", "/Sprite/blackQueen.png", piece);
+            else if (piece.GetType() == typeof(King))
+                RenderPieceSprite("/Sprite/whiteKing.png", "/Sprite/blackKing.png", piece);
         }
 
         private void RenderPieceSprite(string whiteSpritePath, string blackSpritePath, Piece piece)

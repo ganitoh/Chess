@@ -26,7 +26,6 @@
             return true;
         }
 
-
         public override bool Equals(object? obj)
         {
             return obj is Coordinates coordinates &&

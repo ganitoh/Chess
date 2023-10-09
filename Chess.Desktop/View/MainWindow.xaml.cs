@@ -26,5 +26,10 @@ namespace Chess.Desktop
         {
             boardContentControl.Content = new GameControl();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
