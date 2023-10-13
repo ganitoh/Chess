@@ -11,7 +11,11 @@ namespace Chess.Domain.Models.Pieces
 
         protected override bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
         {
-            return base.IsSquareAvailableForMove(newCoordinates, board);
+            var result =  base.IsSquareAvailableForMove(newCoordinates, board);
+
+            result = CalculationAvailableStep.AvailabaleDiagonalShift(board,this.Coordinates).Contains(newCoordinates);
+
+            return result;
 
         }
     }

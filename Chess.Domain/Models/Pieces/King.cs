@@ -25,7 +25,19 @@ namespace Chess.Domain.Models.Pieces
 
         protected override bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
         {
-            return base.IsSquareAvailableForMove(newCoordinates, board);
+            var result =  base.IsSquareAvailableForMove(newCoordinates, board);
+
+            foreach (var piece in board.pieces.Values.Where(P => P.Color != this.Color && P.GetType() != typeof(King)))
+            {
+                var stepsEnemyPiece = piece.GetAvailableMoveSquare(board);
+
+                if (stepsEnemyPiece.Contains(newCoordinates))
+                    return false;
+                else if (piece.HitSquareOnTheNextMove(newCoordinates,board))
+                    return false;
+            }
+
+            return result;
         }
     }
 }

@@ -15,6 +15,9 @@ namespace Chess.Domain.Models.Pieces
             if (this.Color == Color.black)
             {
                 resultShift.Add(new CoordinatesShift(0, -1));
+                resultShift.Add(new CoordinatesShift(-1, -1));
+                resultShift.Add(new CoordinatesShift(1, -1));
+
                 if (!isFirstStepTaken)
                     resultShift.Add(new CoordinatesShift(0, -2));
 
@@ -22,6 +25,9 @@ namespace Chess.Domain.Models.Pieces
             else if (this.Color == Color.white)
             {
                 resultShift.Add(new CoordinatesShift(0, 1));
+                resultShift.Add(new CoordinatesShift(1, 1));
+                resultShift.Add(new CoordinatesShift(-1, 1));
+
                 if (!isFirstStepTaken)
                     resultShift.Add(new CoordinatesShift(0, 2));
             }
@@ -32,6 +38,15 @@ namespace Chess.Domain.Models.Pieces
         protected override bool IsSquareAvailableForMove(Coordinates newCoordinates, Board board)
         {
             bool result =  board.IsSquareEmpty(newCoordinates);
+
+            if (newCoordinates.File != this.Coordinates.File)
+            {
+                if (!board.IsSquareEmpty(newCoordinates) && board.GetPiece(newCoordinates).Color != this.Color)
+                    return true;
+                else
+                    return false;
+
+            }
 
             if (!result)
                 return result;

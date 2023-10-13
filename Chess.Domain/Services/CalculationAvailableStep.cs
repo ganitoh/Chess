@@ -94,25 +94,77 @@ namespace Chess.Domain.Services
 
             var result = new List<Coordinates>();
 
-            foreach (var item in shiftDiagonal.Where(shift => shift.FileShift > 0 && shift.RankShift > 0).OrderBy(shift => shift.RankShift))
+            foreach (var item in shiftDiagonal.Where(shift => shift.RankShift > 0 && shift.FileShift > 0).OrderBy(shift => shift.RankShift))
             {
                 if (pieceCoordinates.IsCorrectShift(item))
                 {
                     if (board.IsSquareEmpty(pieceCoordinates.Shift(item)))
-                    {
                         result.Add(pieceCoordinates.Shift(item));
-                    }
-                    else if (board.pieces[pieceCoordinates.Shift(item)].Color != board.GetPiece(pieceCoordinates).Color)
+                    else if (board.GetPiece(pieceCoordinates.Shift(item)).Color != board.GetPiece(pieceCoordinates).Color)
                     {
                         result.Add(pieceCoordinates.Shift(item));
                         break;
                     }
                     else
                         break;
+                    
                 }
             }
 
+            foreach (var item in shiftDiagonal.Where(shift => shift.RankShift < 0 && shift.FileShift < 0).OrderByDescending(shift => shift.RankShift))
+            {
+                if (pieceCoordinates.IsCorrectShift(item))
+                {
+                    if (board.IsSquareEmpty(pieceCoordinates.Shift(item)))
+                        result.Add(pieceCoordinates.Shift(item));
+                    else if (board.GetPiece(pieceCoordinates.Shift(item)).Color != board.GetPiece(pieceCoordinates).Color)
+                    {
+                        result.Add(pieceCoordinates.Shift(item));
+                        break;
+                    }
+                    else
+                        break;
+
+                }
+            }
+
+            foreach (var item in shiftDiagonal.Where(shift => shift.RankShift > 0 && shift.FileShift < 0).OrderBy(shift => shift.RankShift))
+            {
+                if (pieceCoordinates.IsCorrectShift(item))
+                {
+                    if (board.IsSquareEmpty(pieceCoordinates.Shift(item)))
+                        result.Add(pieceCoordinates.Shift(item));
+                    else if (board.GetPiece(pieceCoordinates.Shift(item)).Color != board.GetPiece(pieceCoordinates).Color)
+                    {
+                        result.Add(pieceCoordinates.Shift(item));
+                        break;
+                    }
+                    else
+                        break;
+
+                }
+            }
+
+            foreach (var item in shiftDiagonal.Where(shift => shift.RankShift < 0 && shift.FileShift > 0).OrderByDescending(shift => shift.RankShift))
+            {
+                if (pieceCoordinates.IsCorrectShift(item))
+                {
+                    if (board.IsSquareEmpty(pieceCoordinates.Shift(item)))
+                        result.Add(pieceCoordinates.Shift(item));
+                    else if (board.GetPiece(pieceCoordinates.Shift(item)).Color != board.GetPiece(pieceCoordinates).Color)
+                    {
+                        result.Add(pieceCoordinates.Shift(item));
+                        break;
+                    }
+                    else
+                        break;
+
+                }
+            }
+
+
             return result;
         }
+  
     }
 }

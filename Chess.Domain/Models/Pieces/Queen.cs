@@ -13,6 +13,9 @@ namespace Chess.Domain.Models.Pieces
         {
             var result = base.IsSquareAvailableForMove(newCoordinates, board);
 
+
+            result = CalculationAvailableStep.AvailabaleDiagonalShift(board,this.Coordinates).Concat(CalculationAvailableStep.AvailableVerticalShift(board,this.Coordinates).Concat(CalculationAvailableStep.AvailableHorizontalshift(board,this.Coordinates))).Contains(newCoordinates); 
+
             return result;
         }
     }

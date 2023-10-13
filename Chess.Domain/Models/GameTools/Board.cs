@@ -1,5 +1,6 @@
 ﻿using Chess.Domain.Models.Pieces;
 using Chess.Domain.Services;
+using System.Net.Sockets;
 
 namespace Chess.Domain.Models.GameTools
 {
@@ -36,5 +37,26 @@ namespace Chess.Domain.Models.GameTools
             else 
                 return false;
         }
+
+        public bool IsShah(Color color)
+        {
+            var king = pieces.Values.FirstOrDefault(p => p.GetType() == typeof(King) && p.Color == color);
+
+            var stepsKing = king!.GetAvailableMoveSquare(this);
+
+            foreach (var piece in pieces.Values.Where(p => p.Color != color))
+            {
+                var stepsEnemyPiece = piece.GetAvailableMoveSquare(this);
+
+                if (stepsEnemyPiece.Contains(king.Coordinates))
+                    return true;
+            }
+
+            return false;
+        }
+
+        
+
+        
     }
 }
