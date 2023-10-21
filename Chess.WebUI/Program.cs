@@ -13,9 +13,12 @@ app.Map("", appbuilder =>
     });
 });
 
-app.Map("/step", appBuilder => 
+app.Map("/maxim", appBuilder => 
 {
-    
+    appBuilder.Run(async context =>
+    {
+        await context.Response.WriteAsync("Maxim");
+    });
 });
 
 app.Run();

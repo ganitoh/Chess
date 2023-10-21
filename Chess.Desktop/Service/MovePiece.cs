@@ -32,9 +32,40 @@ namespace Chess.Desktop.Service
         public void Step(bool isWhiteStep)
         {
             if (isWhiteStep)
-                BindingActionForActivePieces(Color.white);
+            {
+                if (_board.IsShah(Color.white))
+                {
+                    BindingKingUnderShah(Color.white);
+                }
+                else
+                {
+                    BindingActionForActivePieces(Color.white);
+                }
+            }
             else
-                BindingActionForActivePieces(Color.black);
+            {
+
+                if (_board.IsShah(Color.black))
+                {
+                    BindingKingUnderShah(Color.black);
+
+                }
+                else
+                {
+                    BindingActionForActivePieces(Color.black);
+                }
+
+            }
+        }
+
+        private void BindingKingUnderShah(Color color)
+        {
+            var kingPiece = _board.pieces.Values.First(p => p.GetType() == typeof(King) && p.Color == color);
+
+            var pieceButton = _boardGrid.Children.Cast<Button>().First(e => Grid.GetColumn(e) == (int)kingPiece.Coordinates.File - 1 && Grid.GetRow(e) == 7 - (kingPiece.Coordinates.Rank - 1));
+
+            pieceButton.Click += ActivePiece;
+
         }
 
         private void BindingActionForActivePieces(Color colorPiece)
@@ -44,7 +75,7 @@ namespace Chess.Desktop.Service
                 var pieceButton = _boardGrid.Children.Cast<Button>().FirstOrDefault(e => Grid.GetColumn(e) == (int)piece.Coordinates.File - 1 && Grid.GetRow(e) == 7 - (piece.Coordinates.Rank - 1));
                 pieceButton!.Click += ActivePiece;
             }
-        }
+        } 
 
         private void ActivePiece(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -67,7 +98,7 @@ namespace Chess.Desktop.Service
         {
             Coordinates coordinatesActivePiece = GetCoordinatesPieceAtButton(_activeButton!);
 
-            _activePiece = _board.pieces[coordinatesActivePiece];
+            _activePiece = _board.GetPiece(coordinatesActivePiece);
 
             var listShiftPiece = _activePiece?.GetAvailableMoveSquare(_board);
 
